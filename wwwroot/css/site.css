@@ -1,0 +1,15 @@
+.row {
+    min-height: 100vh;
+}
+
+.nav-item .nav-link.active {
+    background-color: #212529;
+    color: #fff !important;
+}
+
+#topBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}

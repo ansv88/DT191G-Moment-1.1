@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html lang="sv">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - DT191G Moment 1.1</title>
+	<script type="importmap"></script>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/DT191G_Moment_1._1.styles.css" asp-append-version="true" />
+</head>
+
+@{
+	var currentPage = ViewContext.RouteData.Values["page"]?.ToString();
+
+	var dateNow = DateOnly.FromDateTime(DateTime.Now);
+
+	var email = "ansv2305@student.miun.se";
+}
+
+<body class="d-flex flex-column min-vh-100">
+
+	<!-- Header -->
+	<header class="bg-dark text-white py-3">
+		<div class="mx-5">
+
+			<!-- HEADER FÖR SMÅ SKÄRMAR: Logo + hamburgermeny på samma rad, datum under -->
+			<!-- Rad 1: Logo (vänster), hamburgermenyn (höger) -->
+			<div class="d-flex d-md-none align-items-center justify-content-between">
+				<!-- Logo -->
+				<h1 class="ms-3 display-5 border border-white border-1 py-2 px-4">Logo</h1>
+
+				<!-- Hamburgermeny-knapp -->
+				<button class="btn btn-outline-light" type="button"
+						data-bs-toggle="offcanvas"
+						data-bs-target="#sidebarMenuMobile">
+					&#9776; Meny
+				</button>
+			</div>
+
+			<!-- Rad 2: Datumraden under logon och hamburgermenyn -->
+			<div class="p-2 mt-2 d-md-none text-center">
+				<p class="mb-0 small">Dagens datum är: @dateNow</p>
+			</div>
+
+			<!-- HEADER FÖR STÖRRE SKÄRMAR: Logo till vänster, datum till höger -->
+			<div class="d-none d-md-flex align-items-center justify-content-between">
+				<!-- Logo -->
+				<h1 class="m-0 display-5 border border-white border-1 py-2 px-4">Logo</h1>
+
+				<!-- Datum -->
+				<div class="border border-white border-1 p-2">
+					<p class="mb-0 small">Dagens datum är: @dateNow</p>
+				</div>
+			</div>
+
+		</div>
+	</header>
+
+	<!-- Sidomeny + main -->
+	<div>
+		<div class="row d-flex h-100 align-items-stretch">
+
+			<!-- Offcanvas nav (mobil) -->
+			<nav class="offcanvas offcanvas-end bg-light" tabindex="-1"
+				 id="sidebarMenuMobile">
+				<div class="offcanvas-header">
+					<h5 class="offcanvas-title">Meny</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+				</div>
+				<div class="offcanvas-body">
+					<ul class="nav flex-column fs-4">
+						<li class="nav-item">
+							<a class="nav-link text-dark" asp-area="" asp-page="/Index">Start</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-dark" asp-area="" asp-page="/Razor">Razor</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-dark" asp-area="" asp-page="/About">Om sidan</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+
+			<!-- Sidomeny för större skärmar -->
+			<nav id="sidebar" class="col-md-3 col-lg-2 p-3 d-none d-md-flex flex-column border">
+				<div class="mx-auto">
+					<ul class="nav flex-column fs-4">
+						<li class="nav-item text-center">
+							<a class="nav-link text-dark @(currentPage == "/Index" ? "active" : "")" asp-area="" asp-page="/Index">Start</a>
+						</li>
+						<li class="nav-item text-center">
+							<a class="nav-link text-dark @(currentPage == "/Razor" ? "active" : "")" asp-area="" asp-page="/Razor">Razor</a>
+						</li>
+						<li class="nav-item text-center">
+							<a class="nav-link text-dark @(currentPage == "/About" ? "active" : "")" asp-area="" asp-page="/About">Om sidan</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+
+			<!-- Main -->
+			<main class="col-md-9 col-lg-10 p-4">
+				@RenderBody()
+			</main>
+		</div>
+		<button id="topBtn" class="btn btn-dark">Till toppen</button>
+	</div>
+
+	<!-- Footer -->
+	<footer class="border-top text-muted text-center py-3">
+		<div>
+			Av: Annelie Svensson – Kontakta mig via e-post:
+			<a href="mailto:@email">@email</a>
+		</div>
+	</footer>
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

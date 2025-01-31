@@ -1,0 +1,58 @@
+﻿@page
+@model DT191G_Moment_1._1.Pages.RazorModel
+@{
+	ViewData["Title"] = "Razor";
+
+	var dateNow = DateTime.Now;
+
+	var dayOfWeek = DateTime.Now.DayOfWeek;
+	var friday = "";
+
+	if (dayOfWeek.Equals("Friday"))
+	{
+		friday = "Idag är det fredag!";
+	}
+	else
+	{
+		friday = "Idag är det inte fredag...";
+	}
+
+	string[] courses = {
+"DT057G, Webbutveckling I",
+"DT084G, Introduktion till programmering i JavaScript",
+"DT200G, Grafisk teknik för webb",
+"DT068G, Webbanvändbarhet",
+"DT003G, Databaser",
+"DT211G, Frontend-baserad webbutveckling",
+"DT207G, Backend-baserad webbutveckling",
+"DT208G, Programmering i TypeScript",
+"IK060G, Projektledning",
+"DT071G, Programmering i C#.net",
+"DT193G, Fullstack-utveckling med ramverk",
+"DT209G, Webbutveckling för WordPress",
+"DT191G, Webbutveckling med .NET",
+"DT210G, Fördjupad frontend-utveckling"
+};
+}
+
+<div class="container mt-4">
+	<h1 class="mb-4">Razor</h1>
+
+	<!-- Information -->
+	<div class="card shadow-sm p-3 mb-4">
+		<h2 class="fs-3 fw-bold">Information</h2>
+		<p><strong>Datum/klockslag:</strong> @dateNow</p>
+		<p>@friday</p>
+	</div>
+
+	<!-- Kurser -->
+	<div class="card shadow-sm p-3">
+		<h2 class="fs-3 fw-bold">Kurser jag läst</h2>
+		<ul class="list-group list-group-flush">
+			@foreach (var course in courses)
+			{
+				<li class="list-group-item">@course</li>
+			}
+		</ul>
+	</div>
+</div>
