@@ -41,14 +41,14 @@
 	<!-- Information -->
 	<div class="card shadow-sm p-3 mb-4">
 		<h2 class="fs-3 fw-bold">Information</h2>
-		<p><strong>Datum/klockslag:</strong> @dateNow</p>
-		<p>@friday</p>
+		<p class="fs-5"><strong>Datum/klockslag:</strong> @dateNow</p>
+		<p class="fs-5">@friday</p>
 	</div>
 
 	<!-- Kurser -->
 	<div class="card shadow-sm p-3">
 		<h2 class="fs-3 fw-bold">Kurser jag läst</h2>
-		<ul class="list-group list-group-flush">
+		<ul class="list-group list-group-flush fs-5">
 			@foreach (var course in courses)
 			{
 				<li class="list-group-item">@course</li>
